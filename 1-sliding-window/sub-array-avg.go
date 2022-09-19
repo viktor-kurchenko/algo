@@ -11,15 +11,13 @@ func main() {
 
 	var sum float32
 	for start, end := 0, 0; end < len(array); end++ {
-		if end-start < k {
-			sum += array[end]
+		sum += array[end]
+		if end < k-1 {
 			continue
 		}
 		result = append(result, sum/k)
 		sum -= array[start]
 		start++
-		sum += array[end]
 	}
-	result = append(result, sum/k)
 	fmt.Printf("result: %v", result)
 }
