@@ -50,3 +50,14 @@ func TestFruitsIntoBaskets(t *testing.T) {
 	// ['B', 'C', 'B', 'B', 'C']
 	assert.Equal(t, 5, FruitsIntoBaskets([]string{"A", "B", "C", "B", "B", "C"}))
 }
+
+func TestLongestSubStrWithDistChars(t *testing.T) {
+	// "abc"
+	assert.Equal(t, 3, LongestSubStrWithDistChars("aabccbb"))
+
+	// "ab"
+	assert.Equal(t, 2, LongestSubStrWithDistChars("abbbb"))
+
+	// "abc" & "cde"
+	assert.Equal(t, 3, LongestSubStrWithDistChars("abccde"))
+}
