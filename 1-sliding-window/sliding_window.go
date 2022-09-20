@@ -49,23 +49,19 @@ func SmallestSubArrayWithGreaterSum(a []int, s int) int {
 }
 
 func LongerSubStrWithKDistChars(s string, k int) int {
-	var result, size int
+	var result int
 	m := make(map[uint8]int)
 	for start, end := 0, 0; end < len(s); end++ {
-		c := s[end]
-		count := m[c]
-		for count == 0 && len(m) == k {
+		m[s[end]] = m[s[end]] + 1
+		for ; len(m) > k; start++ {
 			count := m[s[start]]
 			if count == 1 {
 				delete(m, s[start])
-			} else {
-				m[s[start]] = count - 1
+				continue
 			}
-			size--
-			start++
+			m[s[start]] = count - 1
 		}
-		m[c] = count + 1
-		size++
+		size := end - start + 1
 		if result < size {
 			result = size
 		}
