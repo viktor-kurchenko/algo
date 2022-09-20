@@ -54,17 +54,15 @@ func LongerSubStrWithKDistChars(s string, k int) int {
 	for start, end := 0, 0; end < len(s); end++ {
 		c := s[end]
 		count := m[c]
-		if count == 0 && len(m) == k {
-			for len(m) == k {
-				count := m[s[start]]
-				if count == 1 {
-					delete(m, s[start])
-				} else {
-					m[s[start]] = count - 1
-				}
-				size--
-				start++
+		for count == 0 && len(m) == k {
+			count := m[s[start]]
+			if count == 1 {
+				delete(m, s[start])
+			} else {
+				m[s[start]] = count - 1
 			}
+			size--
+			start++
 		}
 		m[c] = count + 1
 		size++
