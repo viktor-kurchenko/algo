@@ -28,3 +28,17 @@ func TestSmallestSubArrayWithGreaterSum(t *testing.T) {
 	// 8 -> [3, 4, 1] or [1, 1, 6]
 	assert.Equal(t, 3, SmallestSubArrayWithGreaterSum([]int{3, 4, 1, 1, 6}, 8))
 }
+
+func TestLongerSubStrWithKDistChars(t *testing.T) {
+	// "araaci" -> "araa"
+	assert.Equal(t, 4, LongerSubStrWithKDistChars("araaci", 2))
+
+	// "araaci" -> "aa"
+	assert.Equal(t, 2, LongerSubStrWithKDistChars("araaci", 1))
+
+	// "cbbebi" -> "cbbeb" & "bbebi"
+	assert.Equal(t, 5, LongerSubStrWithKDistChars("cbbebi", 3))
+
+	// "cbbebi" -> "cbbebi"
+	assert.Equal(t, 6, LongerSubStrWithKDistChars("cbbebi", 10))
+}
