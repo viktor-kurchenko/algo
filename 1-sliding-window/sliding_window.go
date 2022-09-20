@@ -94,14 +94,13 @@ func FruitsIntoBaskets(a []string) int {
 
 func LongestSubStrWithDistChars(s string) int {
 	var result int
-	m := make(map[uint8]struct{})
+	m := make(map[uint8]int)
 	for start, end := 0, 0; end < len(s); end++ {
 		c := s[end]
-		for _, ok := m[c]; ok; start++ {
-			delete(m, s[start])
-			_, ok = m[c]
+		if p, ok := m[c]; ok {
+			start = p + 1
 		}
-		m[c] = struct{}{}
+		m[c] = end
 		size := end - start + 1
 		if result < size {
 			result = size
