@@ -68,3 +68,26 @@ func LongerSubStrWithKDistChars(s string, k int) int {
 	}
 	return result
 }
+
+func FruitsIntoBaskets(a []string) int {
+	const k = 2
+	var result int
+	m := make(map[string]int)
+	for start, end := 0, 0; end < len(a); end++ {
+		m[a[end]] = m[a[end]] + 1
+		for ; len(m) > k; start++ {
+			c := a[start]
+			count := m[c]
+			if count == 1 {
+				delete(m, c)
+				continue
+			}
+			m[c] = count - 1
+		}
+		size := end - start + 1
+		if result < size {
+			result = size
+		}
+	}
+	return result
+}

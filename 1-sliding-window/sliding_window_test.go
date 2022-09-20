@@ -42,3 +42,11 @@ func TestLongerSubStrWithKDistChars(t *testing.T) {
 	// "cbbebi" -> "cbbebi"
 	assert.Equal(t, 6, LongerSubStrWithKDistChars("cbbebi", 10))
 }
+
+func TestFruitsIntoBaskets(t *testing.T) {
+	// ['C', 'A', 'C']
+	assert.Equal(t, 3, FruitsIntoBaskets([]string{"A", "B", "C", "A", "C"}))
+
+	// ['B', 'C', 'B', 'B', 'C']
+	assert.Equal(t, 5, FruitsIntoBaskets([]string{"A", "B", "C", "B", "B", "C"}))
+}
