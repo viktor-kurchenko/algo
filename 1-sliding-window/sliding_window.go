@@ -1,5 +1,7 @@
 package main
 
+import "reflect"
+
 func SubArrayAvg(a []float32, k int) []float32 {
 	result := make([]float32, 0, len(a)-k+1)
 	var sum float32
@@ -148,4 +150,30 @@ func LongestSubArrayWithOnesAfterReplacement(a []int, k int) int {
 		}
 	}
 	return result
+}
+
+func PermutationInString(s, p string) bool {
+	pm := make(map[uint8]int)
+	for i := range p {
+		c := p[i]
+		pm[c] = pm[c] + 1
+	}
+	m := make(map[uint8]int)
+	for start, end := 0, 0; end < len(s); end++ {
+		m[s[end]] = m[s[end]] + 1
+		if end-start+1 < len(p) {
+			continue
+		}
+		if reflect.DeepEqual(m, pm) {
+			return true
+		}
+		c := s[start]
+		if m[c] == 1 {
+			delete(m, c)
+		} else {
+			m[c] = m[c] - 1
+		}
+		start++
+	}
+	return false
 }

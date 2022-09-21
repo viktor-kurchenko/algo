@@ -80,3 +80,16 @@ func TestLongestSubArrayWithOnesAfterReplacement(t *testing.T) {
 	// Replace the '0' at index 6, 9, and 10 to have the longest contiguous subarray of 1s having length 9.
 	assert.Equal(t, 9, LongestSubArrayWithOnesAfterReplacement([]int{0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1}, 3))
 }
+
+func TestPermutationInString(t *testing.T) {
+	// The string contains "bca" which is a permutation of the given pattern.
+	assert.True(t, PermutationInString("oidbcaf", "abc"))
+
+	assert.False(t, PermutationInString("odicf", "dc"))
+
+	// Both the string and the pattern are a permutation of each other.
+	assert.True(t, PermutationInString("bcdxabcdy", "bcdyabcdx"))
+
+	// The string contains "acb" which is a permutation of the given pattern.
+	assert.True(t, PermutationInString("aaacb", "abc"))
+}
