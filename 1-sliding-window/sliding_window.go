@@ -108,3 +108,24 @@ func LongestSubStrWithDistChars(s string) int {
 	}
 	return result
 }
+
+func LongestSubStrWithDistCharsAfterReplacement(s string, k int) int {
+	var result, maxRep int
+	m := make(map[uint8]int)
+	for start, end := 0, 0; end < len(s); end++ {
+		c := s[end]
+		m[c] = m[c] + 1
+		if maxRep < m[c] {
+			maxRep = m[c]
+		}
+		if end-start+1-maxRep > k {
+			m[s[start]] = m[s[start]] - 1
+			start++
+		}
+		size := end - start + 1
+		if result < size {
+			result = size
+		}
+	}
+	return result
+}

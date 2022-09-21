@@ -61,3 +61,14 @@ func TestLongestSubStrWithDistChars(t *testing.T) {
 	// "abc" & "cde"
 	assert.Equal(t, 3, LongestSubStrWithDistChars("abccde"))
 }
+
+func TestLongestSubStrWithDistCharsAfterReplacement(t *testing.T) {
+	// "bbbbb"
+	assert.Equal(t, 5, LongestSubStrWithDistCharsAfterReplacement("aabccbb", 2))
+
+	// "bbbb"
+	assert.Equal(t, 4, LongestSubStrWithDistCharsAfterReplacement("abbcb", 1))
+
+	// "ccc"
+	assert.Equal(t, 3, LongestSubStrWithDistCharsAfterReplacement("abccde", 1))
+}
