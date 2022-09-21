@@ -72,3 +72,11 @@ func TestLongestSubStrWithDistCharsAfterReplacement(t *testing.T) {
 	// "ccc"
 	assert.Equal(t, 3, LongestSubStrWithDistCharsAfterReplacement("abccde", 1))
 }
+
+func TestLongestSubArrayWithOnesAfterReplacement(t *testing.T) {
+	// Replace the '0' at index 5 and 8 to have the longest contiguous subarray of 1s having length 6.
+	assert.Equal(t, 6, LongestSubArrayWithOnesAfterReplacement([]int{0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1}, 2))
+
+	// Replace the '0' at index 6, 9, and 10 to have the longest contiguous subarray of 1s having length 9.
+	assert.Equal(t, 9, LongestSubArrayWithOnesAfterReplacement([]int{0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1}, 3))
+}

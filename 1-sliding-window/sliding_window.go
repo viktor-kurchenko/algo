@@ -129,3 +129,23 @@ func LongestSubStrWithDistCharsAfterReplacement(s string, k int) int {
 	}
 	return result
 }
+
+func LongestSubArrayWithOnesAfterReplacement(a []int, k int) int {
+	var result, maxRep int
+	for start, end := 0, 0; end < len(a); end++ {
+		if a[end] == 1 {
+			maxRep++
+		}
+		if end-start+1-maxRep > k {
+			if a[start] == 1 {
+				maxRep--
+			}
+			start++
+		}
+		size := end - start + 1
+		if result < size {
+			result = size
+		}
+	}
+	return result
+}
