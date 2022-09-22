@@ -210,3 +210,36 @@ func StrAnagrams(s, a string) []int {
 	}
 	return result
 }
+
+func SmallestWindowWithSubStr(s, p string) string {
+	m := make(map[uint8]int)
+	for i := range p {
+		m[p[i]] = m[p[i]] + 1
+	}
+	result := ""
+	matched := 0
+	for start, end := 0, 0; end < len(s); end++ {
+		if count, ok := m[s[end]]; ok {
+			m[s[end]] = count - 1
+			if count == 1 {
+				matched++
+			}
+		}
+		if end < len(p)-1 {
+			continue
+		}
+		for matched == len(m) {
+			if result == "" || len(result) > end-start+1 {
+				result = s[start : end+1]
+			}
+			if count, ok := m[s[start]]; ok {
+				m[s[start]] = count + 1
+				if count == 0 {
+					matched--
+				}
+			}
+			start++
+		}
+	}
+	return result
+}

@@ -101,3 +101,13 @@ func TestStrAnagrams(t *testing.T) {
 	// "bca", "cab", and "abc"
 	assert.Equal(t, []int{2, 3, 4}, StrAnagrams("abbcabc", "abc"))
 }
+
+func TestSmallestWindowWithSubStr(t *testing.T) {
+	assert.Equal(t, "abdec", SmallestWindowWithSubStr("aabdec", "abc"))
+
+	assert.Equal(t, "aabdec", SmallestWindowWithSubStr("aabdec", "abac"))
+
+	assert.Equal(t, "bca", SmallestWindowWithSubStr("abdbca", "abc"))
+
+	assert.Equal(t, "", SmallestWindowWithSubStr("adcad", "abc"))
+}
