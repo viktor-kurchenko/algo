@@ -93,3 +93,11 @@ func TestPermutationInString(t *testing.T) {
 	// The string contains "acb" which is a permutation of the given pattern.
 	assert.True(t, PermutationInString("aaacb", "abc"))
 }
+
+func TestStrAnagrams(t *testing.T) {
+	// "pq" and "qp"
+	assert.Equal(t, []int{1, 2}, StrAnagrams("ppqp", "pq"))
+
+	// "bca", "cab", and "abc"
+	assert.Equal(t, []int{2, 3, 4}, StrAnagrams("abbcabc", "abc"))
+}

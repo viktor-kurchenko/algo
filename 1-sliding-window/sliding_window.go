@@ -163,11 +163,11 @@ func PermutationInString(s, p string) bool {
 				matched++
 			}
 		}
-		if matched == len(pm) {
-			return true
-		}
 		if end < len(p)-1 {
 			continue
+		}
+		if matched == len(pm) {
+			return true
 		}
 		if count, ok := pm[s[start]]; ok {
 			pm[s[start]] = count + 1
@@ -178,4 +178,35 @@ func PermutationInString(s, p string) bool {
 		start++
 	}
 	return false
+}
+
+func StrAnagrams(s, a string) []int {
+	m := make(map[uint8]int)
+	for i := range a {
+		m[a[i]] = m[a[i]] + 1
+	}
+	match := 0
+	result := make([]int, 0)
+	for start, end := 0, 0; end < len(s); end++ {
+		if count, ok := m[s[end]]; ok {
+			m[s[end]] = count - 1
+			if count == 1 {
+				match++
+			}
+		}
+		if end < len(a)-1 {
+			continue
+		}
+		if match == len(m) {
+			result = append(result, start)
+		}
+		if count, ok := m[s[start]]; ok {
+			m[s[start]] = count + 1
+			if count == 0 {
+				match--
+			}
+		}
+		start++
+	}
+	return result
 }
