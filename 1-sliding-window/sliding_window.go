@@ -250,27 +250,24 @@ func WordsConcatenation(s string, w []string) []int {
 		m[w[i]] = struct{}{}
 	}
 	wl := len(w[0])
-	fl := wl * len(w)
+	fl := wl*len(w) - 1
 	result := make([]int, 0)
 	for start, end := 0, 0; end < len(s); end++ {
-		if end < fl-1 {
+		if end < fl {
 			continue
 		}
 		index := make(map[string]struct{})
-		for k := range m {
-			index[k] = struct{}{}
-		}
 		for i, j := start, start; j <= end; j++ {
 			if j-i == wl-1 {
 				word := s[i : j+1]
-				if _, ok := index[word]; !ok {
+				if _, ok := m[word]; !ok {
 					break
 				}
-				delete(index, word)
+				index[word] = struct{}{}
 				i = j + 1
 			}
 		}
-		if len(index) == 0 {
+		if len(index) == len(m) {
 			result = append(result, start)
 		}
 		start++
