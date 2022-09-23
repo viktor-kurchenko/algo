@@ -29,3 +29,9 @@ func TestRemoveKey(t *testing.T) {
 	// The first two elements after removing every 'Key' will be [11, 1].
 	assert.Equal(t, 2, RemoveKey([]int{2, 11, 2, 2, 1}, 2))
 }
+
+func TestSquaringSortedArray(t *testing.T) {
+	assert.Equal(t, []int{0, 1, 4, 4, 9}, SquaringSortedArray([]int{-2, -1, 0, 2, 3}))
+
+	assert.Equal(t, []int{0, 1, 1, 4, 9}, SquaringSortedArray([]int{-3, -1, 0, 1, 2}))
+}

@@ -36,3 +36,22 @@ func RemoveKey(a []int, k int) int {
 	}
 	return next
 }
+
+func SquaringSortedArray(a []int) []int {
+	result := make([]int, len(a))
+	start, end := 0, len(a)-1
+	index := len(a) - 1
+	for start < end {
+		s1 := a[start] * a[start]
+		s2 := a[end] * a[end]
+		if s1 <= s2 {
+			result[index] = s2
+			end--
+		} else {
+			result[index] = s1
+			start++
+		}
+		index--
+	}
+	return result
+}
