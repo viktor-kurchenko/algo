@@ -21,3 +21,11 @@ func TestRemoveDuplicates(t *testing.T) {
 	// The first two elements after removing the duplicates will be [2, 11].
 	assert.Equal(t, 2, RemoveDuplicates([]int{2, 2, 2, 11}))
 }
+
+func TestRemoveKey(t *testing.T) {
+	// The first four elements after removing every 'Key' will be [2, 6, 10, 9].
+	assert.Equal(t, 4, RemoveKey([]int{3, 2, 3, 6, 3, 10, 9, 3}, 3))
+
+	// The first two elements after removing every 'Key' will be [11, 1].
+	assert.Equal(t, 2, RemoveKey([]int{2, 11, 2, 2, 1}, 2))
+}

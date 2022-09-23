@@ -16,12 +16,23 @@ func PairWithTargetSum(a []int, s int) []int {
 }
 
 func RemoveDuplicates(a []int) int {
-	result := 1
-	for start, end := 0, 1; end < len(a); end++ {
-		if a[start] != a[end] {
-			result++
-			start = end
+	next := 1
+	for i := 0; i < len(a); i++ {
+		if a[next-1] != a[i] {
+			a[next] = a[i]
+			next++
 		}
 	}
-	return result
+	return next
+}
+
+func RemoveKey(a []int, k int) int {
+	next := 0
+	for i := 0; i < len(a); i++ {
+		if a[i] != k {
+			a[next] = a[i]
+			next++
+		}
+	}
+	return next
 }
