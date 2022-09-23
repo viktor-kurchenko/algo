@@ -14,3 +14,14 @@ func PairWithTargetSum(a []int, s int) []int {
 	}
 	return nil
 }
+
+func RemoveDuplicates(a []int) int {
+	result := 1
+	for start, end := 0, 1; end < len(a); end++ {
+		if a[start] != a[end] {
+			result++
+			start = end
+		}
+	}
+	return result
+}
