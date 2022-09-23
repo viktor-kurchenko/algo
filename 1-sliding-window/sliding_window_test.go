@@ -111,3 +111,11 @@ func TestSmallestWindowWithSubStr(t *testing.T) {
 
 	assert.Equal(t, "", SmallestWindowWithSubStr("adcad", "abc"))
 }
+
+func TestWordsConcatenation(t *testing.T) {
+	// The two substring containing both the words are "catfox" & "foxcat".
+	assert.Equal(t, []int{0, 3}, WordsConcatenation("catfoxcat", []string{"cat", "fox"}))
+
+	// The only substring containing both the words is "catfox".
+	assert.Equal(t, []int{3}, WordsConcatenation("catcatfoxfox", []string{"cat", "fox"}))
+}
