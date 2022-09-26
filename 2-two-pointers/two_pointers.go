@@ -63,25 +63,29 @@ func TripletSum2Zero(a []int) [][]int {
 	sort.Ints(a)
 	for i := 0; i < len(a)-2; i++ {
 		x := a[i]
+		if i > 0 && x == a[i-1] {
+			continue
+		}
 		for start, end := i+1, len(a)-1; start < end; {
 			y := a[start]
 			z := a[end]
-			s := y + z + x
-			if s == 0 {
-				if len(result) > 0 {
-					p := result[len(result)-1]
-					if p[0] == x && p[1] == y && p[2] == z {
-						start++
-						continue
-					}
-				}
+			if -x == y+z {
 				result = append(result, []int{x, y, z})
-			}
-			if s <= 0 {
 				start++
+				end--
+				for start < end && a[start] == a[start-1] {
+					start++
+				}
+				for start < end && a[end] == a[end+1] {
+					end--
+				}
 				continue
 			}
-			end--
+			if -x > y+z {
+				start++
+			} else {
+				end--
+			}
 		}
 	}
 	return result
