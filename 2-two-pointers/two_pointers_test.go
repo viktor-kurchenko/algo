@@ -35,3 +35,9 @@ func TestSquaringSortedArray(t *testing.T) {
 
 	assert.Equal(t, []int{0, 1, 1, 4, 9}, SquaringSortedArray([]int{-3, -1, 0, 1, 2}))
 }
+
+func TestTripletSum2Zero(t *testing.T) {
+	assert.Equal(t, [][]int{{-3, 1, 2}, {-2, 0, 2}, {-2, 1, 1}, {-1, 0, 1}}, TripletSum2Zero([]int{-3, 0, 1, 2, -1, 1, -2}))
+
+	assert.Equal(t, [][]int{{-5, 2, 3}, {-2, -1, 3}}, TripletSum2Zero([]int{-5, 2, -1, -2, 3}))
+}

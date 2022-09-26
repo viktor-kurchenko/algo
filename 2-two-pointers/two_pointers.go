@@ -1,5 +1,7 @@
 package main
 
+import "sort"
+
 func PairWithTargetSum(a []int, s int) []int {
 	for start, end := 0, len(a)-1; start < end; {
 		sum := a[start] + a[end]
@@ -52,6 +54,35 @@ func SquaringSortedArray(a []int) []int {
 			start++
 		}
 		index--
+	}
+	return result
+}
+
+func TripletSum2Zero(a []int) [][]int {
+	result := make([][]int, 0)
+	sort.Ints(a)
+	for i := 0; i < len(a)-2; i++ {
+		x := a[i]
+		for start, end := i+1, len(a)-1; start < end; {
+			y := a[start]
+			z := a[end]
+			s := y + z + x
+			if s == 0 {
+				if len(result) > 0 {
+					p := result[len(result)-1]
+					if p[0] == x && p[1] == y && p[2] == z {
+						start++
+						continue
+					}
+				}
+				result = append(result, []int{x, y, z})
+			}
+			if s <= 0 {
+				start++
+				continue
+			}
+			end--
+		}
 	}
 	return result
 }
