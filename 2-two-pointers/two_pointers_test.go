@@ -52,3 +52,12 @@ func TestTripletSumCloseToTarget(t *testing.T) {
 	// The triplet [1, 1, 1] has the closest sum to the target.
 	assert.Equal(t, 3, TripletSumCloseToTarget([]int{1, 0, 1, 1}, 100))
 }
+
+func TestTripletWithSmallerSum(t *testing.T) {
+	// There are two triplets whose sum is less than the target: [-1, 0, 3], [-1, 0, 2]
+	assert.Equal(t, 2, TripletWithSmallerSum([]int{-1, 0, 2, 3}, 3))
+
+	// There are four triplets whose sum is less than the target:
+	// [-1, 1, 4], [-1, 1, 3], [-1, 1, 2], [-1, 2, 3]
+	assert.Equal(t, 4, TripletWithSmallerSum([]int{-1, 4, 2, 1, 3}, 5))
+}

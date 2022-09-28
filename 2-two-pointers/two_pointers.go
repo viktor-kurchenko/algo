@@ -98,9 +98,8 @@ func TripletSumCloseToTarget(a []int, t int) int {
 	sort.Ints(a)
 	result := math.MaxInt
 	for i := 0; i < len(a)-2; i++ {
-		x := a[i]
 		for start, end := i+1, len(a)-1; start < end; {
-			s := x + a[start] + a[end]
+			s := a[i] + a[start] + a[end]
 			if s == t {
 				return s
 			}
@@ -112,6 +111,24 @@ func TripletSumCloseToTarget(a []int, t int) int {
 				continue
 			}
 			end--
+		}
+	}
+	return result
+}
+
+func TripletWithSmallerSum(a []int, t int) int {
+	sort.Ints(a)
+	result := 0
+	for i := 0; i < len(a)-2; i++ {
+		for end := len(a) - 1; end > i+1; end-- {
+			for start := i + 1; start < end; start++ {
+				s := a[i] + a[start] + a[end]
+				if s < t {
+					result++
+					continue
+				}
+				break
+			}
 		}
 	}
 	return result
