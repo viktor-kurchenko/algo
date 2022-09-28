@@ -1,6 +1,9 @@
 package main
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 func PairWithTargetSum(a []int, s int) []int {
 	for start, end := 0, len(a)-1; start < end; {
@@ -89,4 +92,36 @@ func TripletSum2Zero(a []int) [][]int {
 		}
 	}
 	return result
+}
+
+func TripletSumCloseToTarget(a []int, t int) int {
+	sort.Ints(a)
+	result := math.MaxInt
+	for i := 0; i < len(a)-2; i++ {
+		x := a[i]
+		for start, end := i+1, len(a)-1; start < end; {
+			s := x + a[start] + a[end]
+			if s == t {
+				return s
+			}
+			if abs(t-s) < abs(t-result) {
+				result = s
+			}
+			if s < t {
+				start++
+				continue
+			}
+			end--
+		}
+	}
+	return result
+}
+
+// helpers
+
+func abs(n int) int {
+	if n < 0 {
+		return n * -1
+	}
+	return n
 }

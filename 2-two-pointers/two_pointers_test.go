@@ -41,3 +41,14 @@ func TestTripletSum2Zero(t *testing.T) {
 
 	assert.Equal(t, [][]int{{-5, 2, 3}, {-2, -1, 3}}, TripletSum2Zero([]int{-5, 2, -1, -2, 3}))
 }
+
+func TestTripletSumCloseToTarget(t *testing.T) {
+	// The triplet [-2, 1, 2] has the closest sum to the target.
+	assert.Equal(t, 1, TripletSumCloseToTarget([]int{-2, 0, 1, 2}, 2))
+
+	// The triplet [-3, 1, 2] has the closest sum to the target.
+	assert.Equal(t, 0, TripletSumCloseToTarget([]int{-3, -1, 1, 2}, 1))
+
+	// The triplet [1, 1, 1] has the closest sum to the target.
+	assert.Equal(t, 3, TripletSumCloseToTarget([]int{1, 0, 1, 1}, 100))
+}
