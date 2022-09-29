@@ -61,3 +61,9 @@ func TestTripletWithSmallerSum(t *testing.T) {
 	// [-1, 1, 4], [-1, 1, 3], [-1, 1, 2], [-1, 2, 3]
 	assert.Equal(t, 4, TripletWithSmallerSum([]int{-1, 4, 2, 1, 3}, 5))
 }
+
+func TestSubArraysWithProductLessThanTarget(t *testing.T) {
+	assert.Equal(t, [][]int{{2}, {5}, {2, 5}, {3}, {5, 3}, {10}}, SubArraysWithProductLessThanTarget([]int{2, 5, 3, 10}, 30))
+
+	assert.Equal(t, [][]int{{8}, {2}, {8, 2}, {6}, {2, 6}, {5}, {6, 5}}, SubArraysWithProductLessThanTarget([]int{8, 2, 6, 5}, 50))
+}

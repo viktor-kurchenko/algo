@@ -133,6 +133,40 @@ func TripletWithSmallerSum(a []int, t int) int {
 	return result
 }
 
+func SubArraysWithProductLessThanTarget(a []int, t int) [][]int {
+	result := make([][]int, 0)
+	p := 1
+	for start, end := 0, 0; end < len(a); end++ {
+		if a[end] < t {
+			result = append(result, []int{a[end]})
+		}
+		p *= a[end]
+		if start == end {
+			continue
+		}
+		if p < t {
+			r := make([]int, 0)
+			for j := start; j <= end; j++ {
+				r = append(r, a[j])
+			}
+			result = append(result, r)
+			continue
+		}
+		for start < end-1 {
+			p /= a[start]
+			start++
+			if p < t {
+				r := make([]int, 0)
+				for j := start; j <= end; j++ {
+					r = append(r, a[j])
+				}
+				result = append(result, r)
+			}
+		}
+	}
+	return result
+}
+
 // helpers
 
 func abs(n int) int {
