@@ -168,31 +168,17 @@ func SubArraysWithProductLessThanTarget(a []int, t int) [][]int {
 }
 
 func DutchNationFlagProblem(a []int) []int {
-	for i := 1; a[0] != 0; i++ {
-		if a[i] == 0 {
-			a[i] = a[0]
-			a[0] = 0
-		}
-	}
-	for i := len(a) - 2; a[len(a)-1] != 2; i-- {
-		if a[i] == 2 {
-			a[i] = a[len(a)-1]
-			a[len(a)-1] = 2
-		}
-	}
-	low, high := 0, len(a)-1
-	for i := low + 1; i < high; i++ {
-		if a[i] == 0 {
-			for a[low] == 0 {
-				low++
-			}
+	for low, i, high := 0, 0, len(a)-1; i <= high; {
+		switch a[i] {
+		case 0:
 			a[i], a[low] = a[low], 0
-		}
-		if a[i] == 2 {
-			for a[high] == 2 {
-				high--
-			}
+			i++
+			low++
+		case 1:
+			i++
+		case 2:
 			a[i], a[high] = a[high], 2
+			high--
 		}
 	}
 	return a
