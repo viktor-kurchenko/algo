@@ -67,3 +67,9 @@ func TestSubArraysWithProductLessThanTarget(t *testing.T) {
 
 	assert.Equal(t, [][]int{{8}, {2}, {8, 2}, {6}, {2, 6}, {5}, {6, 5}}, SubArraysWithProductLessThanTarget([]int{8, 2, 6, 5}, 50))
 }
+
+func TestDutchNationFlagProblem(t *testing.T) {
+	assert.Equal(t, []int{0, 0, 1, 1, 2}, DutchNationFlagProblem([]int{1, 0, 2, 1, 0}))
+
+	assert.Equal(t, []int{0, 0, 1, 2, 2, 2}, DutchNationFlagProblem([]int{2, 2, 0, 1, 2, 0}))
+}
