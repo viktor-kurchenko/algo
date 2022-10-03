@@ -79,3 +79,17 @@ func TestQuadrupleSum2Target(t *testing.T) {
 
 	assert.Equal(t, [][]int{{-2, 0, 2, 2}, {-1, 0, 1, 2}}, QuadrupleSum2Target([]int{2, 0, -1, 1, -2, 2}, 2))
 }
+
+func TestComparingStringsWithBackspaces(t *testing.T) {
+	// After applying backspaces the strings become "xz" and "xz" respectively.
+	assert.True(t, ComparingStringsWithBackspaces("xy#z", "xzz#"))
+
+	// After applying backspaces the strings become "xz" and "xy" respectively.
+	assert.False(t, ComparingStringsWithBackspaces("xy#z", "xyz#"))
+
+	// After applying backspaces the strings become "x" and "x" respectively.
+	assert.True(t, ComparingStringsWithBackspaces("xp#", "xyz##"))
+
+	// After applying backspaces the strings become "xywrrmp" and "xywrrmp" respectively.
+	assert.True(t, ComparingStringsWithBackspaces("xywrrmp", "xywrrmu#p"))
+}

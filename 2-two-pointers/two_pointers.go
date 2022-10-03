@@ -217,6 +217,37 @@ func QuadrupleSum2Target(a []int, t int) [][]int {
 	return result
 }
 
+func ComparingStringsWithBackspaces(s1, s2 string) bool {
+	for i1, i2 := len(s1)-1, len(s2)-1; i1 >= 0 && i2 >= 0; i1, i2 = i1-1, i2-1 {
+		r := 0
+		for s1[i1] == '#' || r > 0 {
+			if s1[i1] == '#' {
+				r++
+				i1--
+				continue
+			}
+			i1--
+			r--
+		}
+		for s2[i2] == '#' || r > 0 {
+			if s2[i2] == '#' {
+				r++
+				i2--
+				continue
+			}
+			i2--
+			r--
+		}
+		if s1[i1] != s2[i2] {
+			return false
+		}
+		if i1 == 0 && i2 == 0 {
+			return true
+		}
+	}
+	return false
+}
+
 // helpers
 
 func abs(n int) int {
