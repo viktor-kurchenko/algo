@@ -73,3 +73,9 @@ func TestDutchNationFlagProblem(t *testing.T) {
 
 	assert.Equal(t, []int{0, 0, 1, 2, 2, 2}, DutchNationFlagProblem([]int{2, 2, 0, 1, 2, 0}))
 }
+
+func TestQuadrupleSum2Target(t *testing.T) {
+	assert.Equal(t, [][]int{{-3, -1, 1, 4}, {-3, 1, 1, 2}}, QuadrupleSum2Target([]int{4, 1, 2, -1, 1, -3}, 1))
+
+	assert.Equal(t, [][]int{{-2, 0, 2, 2}, {-1, 0, 1, 2}}, QuadrupleSum2Target([]int{2, 0, -1, 1, -2, 2}, 2))
+}
