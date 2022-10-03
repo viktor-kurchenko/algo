@@ -187,30 +187,31 @@ func DutchNationFlagProblem(a []int) []int {
 func QuadrupleSum2Target(a []int, t int) [][]int {
 	result := make([][]int, 0)
 	sort.Ints(a)
-	for start, end := 0, 1; ; {
-		sum := a[start] + a[end]
-		for s, e := end+1, len(a)-1; s < e; {
-			r := t - (sum + a[s] + a[e])
-			if r < 0 {
-				e--
-				continue
-			}
-			if r == 0 {
-				result = append(result, []int{a[start], a[end], a[s], a[e]})
-			}
-			s++
-			for s < e && a[s-1] == a[s] {
-				s++
-			}
-		}
-		if end < len(a)-3 {
-			end++
+	for i := 0; i < len(a)-3; i++ {
+		if i > 0 && a[i] == a[i-1] {
 			continue
 		}
-		start++
-		end = start + 1
-		if end == len(a)-3 {
-			break
+		for j := i + 1; j < len(a)-2; j++ {
+			if j > i+1 && a[j] == a[j-1] {
+				continue
+			}
+			for s, e := j+1, len(a)-1; s < e; {
+				sum := a[i] + a[j] + a[s] + a[e]
+				if sum > t {
+					e--
+					for s < e && a[e] == a[e+1] {
+						e--
+					}
+					continue
+				}
+				if sum == t {
+					result = append(result, []int{a[i], a[j], a[s], a[e]})
+				}
+				s++
+				for s < e && a[s] == a[s-1] {
+					s++
+				}
+			}
 		}
 	}
 	return result
