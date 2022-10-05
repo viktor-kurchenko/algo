@@ -248,6 +248,30 @@ func ComparingStringsWithBackspaces(s1, s2 string) bool {
 	return false
 }
 
+func MinWindow2Sort(a []int) int {
+	minIdx, maxIdx := 0, 0
+	for max, i := a[0], 1; i < len(a); i++ {
+		if max < a[i] {
+			max = a[i]
+		}
+		if a[i] < a[i-1] || a[i] < max {
+			minIdx = i
+		}
+	}
+	for min, i := len(a)-1, len(a)-2; i >= 0; i-- {
+		if min > a[i] {
+			min = a[i]
+		}
+		if a[i] > a[i+1] || a[i] > min {
+			maxIdx = i
+		}
+	}
+	if maxIdx == 0 && minIdx == 0 {
+		return 0
+	}
+	return abs(maxIdx-minIdx) + 1
+}
+
 // helpers
 
 func abs(n int) int {

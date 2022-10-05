@@ -93,3 +93,17 @@ func TestComparingStringsWithBackspaces(t *testing.T) {
 	// After applying backspaces the strings become "xywrrmp" and "xywrrmp" respectively.
 	assert.True(t, ComparingStringsWithBackspaces("xywrrmp", "xywrrmu#p"))
 }
+
+func TestMinWindow2Sort(t *testing.T) {
+	// We need to sort only the subarray [5, 3, 7, 10, 9] to make the whole array sorted
+	assert.Equal(t, 5, MinWindow2Sort([]int{1, 2, 5, 3, 7, 10, 9, 12}))
+
+	// We need to sort only the subarray [1, 3, 2, 0, -1] to make the whole array sorted
+	assert.Equal(t, 5, MinWindow2Sort([]int{1, 3, 2, 0, -1, 7, 10}))
+
+	// The array is already sorted
+	assert.Equal(t, 0, MinWindow2Sort([]int{1, 2, 3}))
+
+	// The whole array needs to be sorted.
+	assert.Equal(t, 3, MinWindow2Sort([]int{3, 2, 1}))
+}
