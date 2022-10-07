@@ -82,3 +82,22 @@ func TestHappyNumber(t *testing.T) {
 	assert.True(t, HappyNumber(23))
 	assert.False(t, HappyNumber(12))
 }
+
+func TestMiddleLinkedList(t *testing.T) {
+	list := Node{
+		val: 1,
+		next: &Node{
+			val: 2,
+			next: &Node{
+				val: 3,
+				next: &Node{
+					val: 4,
+					next: &Node{
+						val: 5,
+					},
+				},
+			},
+		},
+	}
+	assert.Equal(t, 3, MiddleLinkedList(&list))
+}

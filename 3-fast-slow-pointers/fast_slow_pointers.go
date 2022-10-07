@@ -64,6 +64,16 @@ func HappyNumber(n int) bool {
 	}
 }
 
+func MiddleLinkedList(list *Node) int {
+	l := 1
+	n := list
+	for n != nil {
+		n = n.next
+		l++
+	}
+	return l / 2
+}
+
 // helpers
 
 type Node struct {
