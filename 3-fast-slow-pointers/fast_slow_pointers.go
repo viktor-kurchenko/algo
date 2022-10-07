@@ -64,14 +64,12 @@ func HappyNumber(n int) bool {
 	}
 }
 
-func MiddleLinkedList(list *Node) int {
-	l := 1
-	n := list
-	for n != nil {
-		n = n.next
-		l++
+func MiddleLinkedList(list *Node) *Node {
+	slow, fast := list, list.next
+	for fast != nil && fast.next != nil {
+		slow, fast = slow.next, fast.next.next
 	}
-	return l / 2
+	return slow
 }
 
 // helpers

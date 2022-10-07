@@ -99,5 +99,5 @@ func TestMiddleLinkedList(t *testing.T) {
 			},
 		},
 	}
-	assert.Equal(t, 3, MiddleLinkedList(&list))
+	assert.Equal(t, 3, MiddleLinkedList(&list).val)
 }
