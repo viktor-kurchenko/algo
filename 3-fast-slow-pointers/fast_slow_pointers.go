@@ -28,6 +28,27 @@ func LinkedListCycleLength(list *Node) int {
 	return i
 }
 
+func StartLinkedListCycle(list *Node) *Node {
+	p1, p2 := list.next, list.next.next
+	for p1 != p2 {
+		p1, p2 = p1.next, p2.next.next
+	}
+	l := 1
+	p2 = p2.next
+	for p1 != p2 {
+		p2 = p2.next
+		l++
+	}
+	p1, p2 = list, list
+	for i := 0; i < l; i++ {
+		p2 = p2.next
+	}
+	for p1 != p2 {
+		p1, p2 = p1.next, p2.next
+	}
+	return p1
+}
+
 // helpers
 
 type Node struct {
