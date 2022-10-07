@@ -77,3 +77,8 @@ func TestStartLinkedListCycle(t *testing.T) {
 	node6.next = list.next.next
 	assert.Equal(t, node3.val, StartLinkedListCycle(&list).val)
 }
+
+func TestHappyNumber(t *testing.T) {
+	assert.True(t, HappyNumber(23))
+	assert.False(t, HappyNumber(12))
+}

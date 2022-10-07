@@ -49,9 +49,34 @@ func StartLinkedListCycle(list *Node) *Node {
 	return p1
 }
 
+func HappyNumber(n int) bool {
+	m := make(map[int]struct{})
+	m[n] = struct{}{}
+	for {
+		n = num2SquareSum(n)
+		if n == 1 {
+			return true
+		}
+		if _, ok := m[n]; ok {
+			return false
+		}
+		m[n] = struct{}{}
+	}
+}
+
 // helpers
 
 type Node struct {
 	val  int
 	next *Node
+}
+
+func num2SquareSum(n int) int {
+	sum := 0
+	for n > 0 {
+		x := n % 10
+		sum += x * x
+		n /= 10
+	}
+	return sum
 }
