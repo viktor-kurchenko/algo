@@ -6,6 +6,44 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestReverseLinkedList(t *testing.T) {
+	original := &Node{
+		val: 1,
+		next: &Node{
+			val: 2,
+			next: &Node{
+				val: 3,
+				next: &Node{
+					val: 4,
+					next: &Node{
+						val: 5,
+					},
+				},
+			},
+		},
+	}
+	expected := &Node{
+		val: 5,
+		next: &Node{
+			val: 4,
+			next: &Node{
+				val: 3,
+				next: &Node{
+					val: 2,
+					next: &Node{
+						val: 1,
+					},
+				},
+			},
+		},
+	}
+	actual := ReverseLinkedList(original)
+	for expected.next != nil && actual.next != nil {
+		assert.Equal(t, expected.val, actual.val)
+		expected, actual = expected.next, actual.next
+	}
+}
+
 func TestLinkedListCycle(t *testing.T) {
 	node6 := &Node{val: 6}
 	list := Node{
@@ -104,15 +142,21 @@ func TestMiddleLinkedList(t *testing.T) {
 
 func TestPalindromeLinkedList(t *testing.T) {
 	list := Node{
-		val: 2,
+		val: 1,
 		next: &Node{
-			val: 4,
+			val: 2,
 			next: &Node{
-				val: 6,
+				val: 4,
 				next: &Node{
-					val: 4,
+					val: 6,
 					next: &Node{
-						val: 2,
+						val: 4,
+						next: &Node{
+							val: 2,
+							next: &Node{
+								val: 1,
+							},
+						},
 					},
 				},
 			},
@@ -139,4 +183,88 @@ func TestPalindromeLinkedList(t *testing.T) {
 		},
 	}
 	assert.False(t, PalindromeLinkedList(&list))
+}
+
+func TestRearrangeLinkedList(t *testing.T) {
+	actual := &Node{
+		val: 2,
+		next: &Node{
+			val: 4,
+			next: &Node{
+				val: 6,
+				next: &Node{
+					val: 8,
+					next: &Node{
+						val: 10,
+						next: &Node{
+							val: 12,
+						},
+					},
+				},
+			},
+		},
+	}
+	expected := &Node{
+		val: 2,
+		next: &Node{
+			val: 12,
+			next: &Node{
+				val: 4,
+				next: &Node{
+					val: 10,
+					next: &Node{
+						val: 6,
+						next: &Node{
+							val: 8,
+						},
+					},
+				},
+			},
+		},
+	}
+	assert.True(t, linkedListsEqual(actual, expected))
+
+	actual = &Node{
+		val: 2,
+		next: &Node{
+			val: 4,
+			next: &Node{
+				val: 6,
+				next: &Node{
+					val: 8,
+					next: &Node{
+						val: 10,
+					},
+				},
+			},
+		},
+	}
+	expected = &Node{
+		val: 2,
+		next: &Node{
+			val: 10,
+			next: &Node{
+				val: 4,
+				next: &Node{
+					val: 8,
+					next: &Node{
+						val: 6,
+					},
+				},
+			},
+		},
+	}
+	assert.True(t, linkedListsEqual(actual, expected))
+}
+
+// helpers
+
+func linkedListsEqual(list1, list2 *Node) bool {
+	for list1.next != nil && list2.next != nil {
+		if list1.val != list2.val {
+			return false
+		}
+		list1, list2 = list1.next, list2.next
+	}
+	return true
 }

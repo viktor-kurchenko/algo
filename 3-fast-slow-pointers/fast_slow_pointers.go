@@ -78,27 +78,23 @@ func PalindromeLinkedList(list *Node) bool {
 		mid, fast = mid.next, fast.next.next
 	}
 	// reverse second half
-	current, next := mid.next, mid.next.next
-	for next != nil {
-		current.val, next.val = next.val, current.val
-		current, next = current.next, next.next
-	}
-	first, second := list, mid.next
+	mid = ReverseLinkedList(mid)
+	first, second := list, mid
 	equal := true
-	for second.next != nil {
+	for first.next != nil && second.next != nil {
 		if first.val != second.val {
 			equal = false
 			break
 		}
 		first, second = first.next, second.next
 	}
-	// reverse second half
-	current, next = mid.next, mid.next.next
-	for next != nil {
-		current.val, next.val = next.val, current.val
-		current, next = current.next, next.next
-	}
+	// reverse second half again
+	ReverseLinkedList(mid)
 	return equal
+}
+
+func RearrangeLinkedList(list *Node) *Node {
+	return nil
 }
 
 // helpers
@@ -106,6 +102,17 @@ func PalindromeLinkedList(list *Node) bool {
 type Node struct {
 	val  int
 	next *Node
+}
+
+func ReverseLinkedList(head *Node) *Node {
+	var prev *Node
+	for head != nil {
+		next := head.next
+		head.next = prev
+		prev = head
+		head = next
+	}
+	return prev
 }
 
 func num2SquareSum(n int) int {
