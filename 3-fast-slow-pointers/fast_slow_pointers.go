@@ -72,6 +72,35 @@ func MiddleLinkedList(list *Node) *Node {
 	return slow
 }
 
+func PalindromeLinkedList(list *Node) bool {
+	mid, fast := list, list
+	for fast.next != nil && fast.next.next != nil {
+		mid, fast = mid.next, fast.next.next
+	}
+	// reverse second half
+	current, next := mid.next, mid.next.next
+	for next != nil {
+		current.val, next.val = next.val, current.val
+		current, next = current.next, next.next
+	}
+	first, second := list, mid.next
+	equal := true
+	for second.next != nil {
+		if first.val != second.val {
+			equal = false
+			break
+		}
+		first, second = first.next, second.next
+	}
+	// reverse second half
+	current, next = mid.next, mid.next.next
+	for next != nil {
+		current.val, next.val = next.val, current.val
+		current, next = current.next, next.next
+	}
+	return equal
+}
+
 // helpers
 
 type Node struct {

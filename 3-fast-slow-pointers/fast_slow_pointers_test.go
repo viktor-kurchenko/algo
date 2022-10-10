@@ -101,3 +101,42 @@ func TestMiddleLinkedList(t *testing.T) {
 	}
 	assert.Equal(t, 3, MiddleLinkedList(&list).val)
 }
+
+func TestPalindromeLinkedList(t *testing.T) {
+	list := Node{
+		val: 2,
+		next: &Node{
+			val: 4,
+			next: &Node{
+				val: 6,
+				next: &Node{
+					val: 4,
+					next: &Node{
+						val: 2,
+					},
+				},
+			},
+		},
+	}
+	assert.True(t, PalindromeLinkedList(&list))
+
+	list = Node{
+		val: 2,
+		next: &Node{
+			val: 4,
+			next: &Node{
+				val: 6,
+				next: &Node{
+					val: 4,
+					next: &Node{
+						val: 2,
+						next: &Node{
+							val: 2,
+						},
+					},
+				},
+			},
+		},
+	}
+	assert.False(t, PalindromeLinkedList(&list))
+}
