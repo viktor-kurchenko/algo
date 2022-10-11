@@ -186,7 +186,7 @@ func TestPalindromeLinkedList(t *testing.T) {
 }
 
 func TestRearrangeLinkedList(t *testing.T) {
-	actual := &Node{
+	original := &Node{
 		val: 2,
 		next: &Node{
 			val: 4,
@@ -222,9 +222,10 @@ func TestRearrangeLinkedList(t *testing.T) {
 			},
 		},
 	}
-	assert.True(t, linkedListsEqual(actual, expected))
+	actual := RearrangeLinkedList(original)
+	assert.True(t, linkedListsEqual(expected, actual))
 
-	actual = &Node{
+	original = &Node{
 		val: 2,
 		next: &Node{
 			val: 4,
@@ -254,13 +255,14 @@ func TestRearrangeLinkedList(t *testing.T) {
 			},
 		},
 	}
-	assert.True(t, linkedListsEqual(actual, expected))
+	actual = RearrangeLinkedList(original)
+	assert.True(t, linkedListsEqual(expected, actual))
 }
 
 // helpers
 
 func linkedListsEqual(list1, list2 *Node) bool {
-	for list1.next != nil && list2.next != nil {
+	for list1.next != nil {
 		if list1.val != list2.val {
 			return false
 		}

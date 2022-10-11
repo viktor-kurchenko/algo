@@ -94,7 +94,21 @@ func PalindromeLinkedList(list *Node) bool {
 }
 
 func RearrangeLinkedList(list *Node) *Node {
-	return nil
+	mid, fast := list, list
+	for fast.next != nil && fast.next.next != nil {
+		mid, fast = mid.next, fast.next.next
+	}
+	mid = ReverseLinkedList(mid)
+	start := list
+	for start.next != nil && mid.next != nil {
+		sn := start.next
+		start.next = mid
+		start = sn
+		mn := mid.next
+		mid.next = start
+		mid = mn
+	}
+	return list
 }
 
 // helpers
