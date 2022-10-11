@@ -98,15 +98,10 @@ func RearrangeLinkedList(list *Node) *Node {
 	for fast.next != nil && fast.next.next != nil {
 		mid, fast = mid.next, fast.next.next
 	}
-	mid = ReverseLinkedList(mid)
-	start := list
+	start, mid := list, ReverseLinkedList(mid)
 	for start.next != nil && mid.next != nil {
-		sn := start.next
-		start.next = mid
-		start = sn
-		mn := mid.next
-		mid.next = start
-		mid = mn
+		start, start.next = start.next, mid
+		mid, mid.next = mid.next, start
 	}
 	return list
 }
