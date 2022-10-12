@@ -259,6 +259,16 @@ func TestRearrangeLinkedList(t *testing.T) {
 	assert.True(t, linkedListsEqual(expected, actual))
 }
 
+func TestCycleInCircularArray(t *testing.T) {
+	// The array has a cycle among indices: 0 -> 1 -> 3 -> 0
+	assert.True(t, CycleInCircularArray([]int{1, 2, -1, 2, 2}))
+
+	// The array has a cycle among indices: 1 -> 3 -> 1
+	assert.True(t, CycleInCircularArray([]int{2, 2, -1, 2}))
+
+	assert.False(t, CycleInCircularArray([]int{2, 1, -1, -2}))
+}
+
 // helpers
 
 func linkedListsEqual(list1, list2 *Node) bool {

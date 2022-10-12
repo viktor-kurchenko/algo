@@ -106,6 +106,42 @@ func RearrangeLinkedList(list *Node) *Node {
 	return list
 }
 
+func CycleInCircularArray(a []int) bool {
+	for i := 0; i < len(a); i++ {
+		if a[i] == 0 {
+			continue
+		}
+		posDir := true
+		if a[i] < 0 {
+			posDir = false
+		}
+		m := make(map[int]struct{})
+		m[i] = struct{}{}
+		prev, j := i-1, i
+		for {
+			j = j + a[j]
+			if j >= len(a) {
+				prev, j = j-len(a)-1, j-len(a)
+			}
+			if j < 0 {
+				prev, j = len(a)+j+1, len(a)+j
+			}
+			if posDir && prev >= j {
+				break
+			}
+			if !posDir && prev <= j {
+				break
+			}
+			if _, ok := m[j]; ok {
+				return true
+			}
+			m[j] = struct{}{}
+			prev = j
+		}
+	}
+	return false
+}
+
 // helpers
 
 type Node struct {
