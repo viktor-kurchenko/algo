@@ -1,31 +1,37 @@
 package main
 
+import "sort"
+
 func MergeIntervals(intervals [][]int) [][]int {
-	m := make(map[int]int)
-	for _, pair := range intervals {
-		start, end := pair[0], pair[1]
-		match := false
-		for s, e := range m {
-			if (start >= s && start <= e) || (end >= s && end <= e) || (start <= s && end >= e) {
-				match = true
-				if end > e {
-					m[s] = end
-				}
-				if start < s {
-					tmp := m[s]
-					delete(m, s)
-					m[start] = tmp
-				}
-				break
-			}
-		}
-		if !match {
-			m[start] = end
-		}
-	}
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
+	})
 	result := make([][]int, 0)
-	for s, e := range m {
-		result = append(result, []int{s, e})
+	result = append(result, intervals[0])
+	for i := 1; i < len(intervals); i++ {
+		pStart, pEnd := result[len(result)-1][0], result[len(result)-1][1]
+		start, end := intervals[i][0], intervals[i][1]
+		if start < pEnd {
+			result[len(result)-1][0], result[len(result)-1][1] = min(start, pStart), max(end, pEnd)
+			continue
+		}
+		result = append(result, []int{start, end})
 	}
 	return result
+}
+
+// helpers
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
