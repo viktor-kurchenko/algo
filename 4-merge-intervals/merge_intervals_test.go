@@ -16,3 +16,14 @@ func TestMergeIntervals(t *testing.T) {
 	// Since all the given intervals overlap, we merged them into one.
 	assert.Equal(t, [][]int{{1, 6}}, MergeIntervals([][]int{{1, 4}, {2, 6}, {3, 5}}))
 }
+
+func TestInsertInterval(t *testing.T) {
+	// After insertion, since [4,6] overlaps with [5,7], we merged them into one [4,7].
+	assert.Equal(t, [][]int{{1, 3}, {4, 7}, {8, 12}}, InsertInterval([][]int{{1, 3}, {5, 7}, {8, 12}}, []int{4, 6}))
+
+	// After insertion, since [4,10] overlaps with [5,7] & [8,12], we merged them into [4,12].
+	assert.Equal(t, [][]int{{1, 3}, {4, 12}}, InsertInterval([][]int{{1, 3}, {5, 7}, {8, 12}}, []int{4, 10}))
+
+	// After insertion, since [1,4] overlaps with [2,3], we merged them into one [1,4].
+	assert.Equal(t, [][]int{{1, 4}, {5, 7}}, InsertInterval([][]int{{2, 3}, {5, 7}}, []int{1, 4}))
+}
