@@ -68,6 +68,29 @@ func ConflictingAppointments(a [][]int) bool {
 	return true
 }
 
+func MinimumMeetingRooms(a [][]int) int {
+	sort.Slice(a, func(i, j int) bool {
+		return a[i][0] < a[j][0]
+	})
+	rooms, maxRooms := 1, 1
+	lastHour := a[0][1]
+	for i := 1; i < len(a); i++ {
+		if a[i][0] >= lastHour {
+			rooms--
+			lastHour = a[i][0]
+		}
+		if a[i-1][1] > a[i][0] {
+			rooms++
+		} else {
+			rooms--
+		}
+		if rooms > maxRooms {
+			maxRooms = rooms
+		}
+	}
+	return maxRooms
+}
+
 // helpers
 
 func min(a, b int) int {

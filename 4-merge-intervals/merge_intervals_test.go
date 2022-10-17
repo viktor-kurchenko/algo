@@ -44,3 +44,13 @@ func TestConflictingAppointments(t *testing.T) {
 	// Since [4,5] and [3,6] overlap, a person cannot attend both of these appointments.
 	assert.False(t, ConflictingAppointments([][]int{{4, 5}, {2, 3}, {3, 6}}))
 }
+
+func TestMinimumMeetingRooms(t *testing.T) {
+	assert.Equal(t, 2, MinimumMeetingRooms([][]int{{1, 4}, {2, 5}, {7, 9}}))
+
+	assert.Equal(t, 1, MinimumMeetingRooms([][]int{{6, 7}, {2, 4}, {8, 12}}))
+
+	assert.Equal(t, 2, MinimumMeetingRooms([][]int{{1, 4}, {2, 3}, {3, 6}}))
+
+	assert.Equal(t, 2, MinimumMeetingRooms([][]int{{4, 5}, {2, 3}, {2, 4}, {3, 5}}))
+}
