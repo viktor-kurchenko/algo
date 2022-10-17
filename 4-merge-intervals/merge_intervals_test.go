@@ -27,3 +27,9 @@ func TestInsertInterval(t *testing.T) {
 	// After insertion, since [1,4] overlaps with [2,3], we merged them into one [1,4].
 	assert.Equal(t, [][]int{{1, 4}, {5, 7}}, InsertInterval([][]int{{2, 3}, {5, 7}}, []int{1, 4}))
 }
+
+func TestIntervalsIntersection(t *testing.T) {
+	assert.Equal(t, [][]int{{2, 3}, {5, 6}, {7, 7}}, IntervalsIntersection([][]int{{1, 3}, {5, 6}, {7, 9}}, [][]int{{2, 3}, {5, 7}}))
+
+	assert.Equal(t, [][]int{{5, 7}, {9, 10}}, IntervalsIntersection([][]int{{1, 3}, {5, 7}, {9, 12}}, [][]int{{5, 10}}))
+}

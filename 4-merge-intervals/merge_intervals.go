@@ -38,6 +38,34 @@ func InsertInterval(intervals [][]int, newInterval []int) [][]int {
 	return result
 }
 
+func IntervalsIntersection(arr1, arr2 [][]int) [][]int {
+	result := make([][]int, 0)
+	for p1, p2 := 0, 0; p1 < len(arr1) && p2 < len(arr2); {
+		i1, i2 := arr1[p1], arr2[p2]
+		cmp := comp(i1, i2)
+		if cmp == -1 {
+			p2++
+			continue
+		}
+		if cmp == 1 {
+			p1++
+			continue
+		}
+		result = append(result, []int{max(i1[0], i2[0]), min(i1[1], i2[1])})
+		if i1[1] > i2[1] {
+			p2++
+			continue
+		}
+		if i1[1] < i2[1] {
+			p1++
+			continue
+		}
+		p1++
+		p2++
+	}
+	return result
+}
+
 // helpers
 
 func min(a, b int) int {
@@ -52,4 +80,15 @@ func max(a, b int) int {
 		return a
 	}
 	return b
+}
+
+// -1: p1>p2, 0: intersection, 1: p1<p2
+func comp(p1, p2 []int) int {
+	if p1[0] > p2[1] {
+		return -1
+	}
+	if p2[0] > p1[1] {
+		return 1
+	}
+	return 0
 }
