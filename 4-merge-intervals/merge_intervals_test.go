@@ -33,3 +33,14 @@ func TestIntervalsIntersection(t *testing.T) {
 
 	assert.Equal(t, [][]int{{5, 7}, {9, 10}}, IntervalsIntersection([][]int{{1, 3}, {5, 7}, {9, 12}}, [][]int{{5, 10}}))
 }
+
+func TestConflictingAppointments(t *testing.T) {
+	// Since [1,4] and [2,5] overlap, a person cannot attend both of these appointments.
+	assert.False(t, ConflictingAppointments([][]int{{1, 4}, {2, 5}, {7, 9}}))
+
+	// None of the appointments overlap, therefore a person can attend all of them.
+	assert.True(t, ConflictingAppointments([][]int{{6, 7}, {2, 4}, {8, 12}}))
+
+	// Since [4,5] and [3,6] overlap, a person cannot attend both of these appointments.
+	assert.False(t, ConflictingAppointments([][]int{{4, 5}, {2, 3}, {3, 6}}))
+}

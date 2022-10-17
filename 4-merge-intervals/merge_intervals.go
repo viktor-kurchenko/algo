@@ -56,6 +56,18 @@ func IntervalsIntersection(arr1, arr2 [][]int) [][]int {
 	return result
 }
 
+func ConflictingAppointments(a [][]int) bool {
+	sort.Slice(a, func(i, j int) bool {
+		return a[i][0] < a[j][0]
+	})
+	for i := 1; i < len(a); i++ {
+		if a[i-1][1] >= a[i][0] {
+			return false
+		}
+	}
+	return true
+}
+
 // helpers
 
 func min(a, b int) int {
