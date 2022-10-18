@@ -100,17 +100,17 @@ func MaxCPULoad(jobs [][]int) int {
 	concurrentJobs = append(concurrentJobs, Job{jobs[0][0], jobs[0][1], jobs[0][2]})
 	for i := 1; i < len(jobs); i++ {
 		ind := 0
-		for ; ind < len(concurrentJobs); ind++ {
-			if jobs[i][0] < concurrentJobs[ind].End {
-				break
+		load := 0
+		for j := range concurrentJobs {
+			if jobs[i][0] < concurrentJobs[j].End {
+				load += concurrentJobs[j].Load
+				continue
 			}
+			ind++
 		}
 		concurrentJobs = concurrentJobs[ind:]
 		concurrentJobs = append(concurrentJobs, Job{jobs[i][0], jobs[i][1], jobs[i][2]})
-		load := 0
-		for j := range concurrentJobs {
-			load += concurrentJobs[j].Load
-		}
+		load += jobs[i][2]
 		if load > maxLoad {
 			maxLoad = load
 		}
