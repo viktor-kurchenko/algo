@@ -129,9 +129,6 @@ func EmployeeFreeTime(intervals [][][]int) [][]int {
 		}
 	}
 	timeline := make(map[int]bool)
-	for i := min; i < max; i++ {
-		timeline[i] = false
-	}
 	for _, interval := range intervals {
 		for _, emp := range interval {
 			for i := emp[0]; i < emp[1]; i++ {
@@ -140,31 +137,21 @@ func EmployeeFreeTime(intervals [][][]int) [][]int {
 		}
 	}
 	result := make([][]int, 0)
-	period := make([]int, 0)
+	start := 0
 	for i := min; i < max; i++ {
 		if timeline[i] {
-			if len(period) > 0 {
-				if len(period) == 1 {
-					period = append(period, i)
-				} else {
-					period[1] = i
-				}
-				result = append(result, period)
-				period = make([]int, 0)
+			if start > 0 {
+				result = append(result, []int{start, i})
+				start = 0
 			}
 			continue
 		}
-		if len(period) < 2 {
-			period = append(period, i)
-		} else {
-			period[1] = i
+		if start == 0 {
+			start = i
 		}
 	}
-	if len(period) > 0 {
-		if len(period) == 1 {
-			period = append(period, max)
-		}
-		result = append(result, period)
+	if start > 0 {
+		result = append(result, []int{start, max})
 	}
 	return result
 }
