@@ -54,3 +54,14 @@ func TestMinimumMeetingRooms(t *testing.T) {
 
 	assert.Equal(t, 2, MinimumMeetingRooms([][]int{{4, 5}, {2, 3}, {2, 4}, {3, 5}}))
 }
+
+func TestMaxCPULoad(t *testing.T) {
+	// Since [1,4,3] and [2,5,4] overlap, their maximum CPU load (3+4=7) will be when both the jobs are running at the same time i.e., during the time interval (2,4).
+	assert.Equal(t, 7, MaxCPULoad([][]int{{1, 4, 3}, {2, 5, 4}, {7, 9, 6}}))
+
+	// None of the jobs overlap, therefore we will take the maximum load of any job which is 15.
+	assert.Equal(t, 15, MaxCPULoad([][]int{{6, 7, 10}, {2, 4, 11}, {8, 12, 15}}))
+
+	// Maximum CPU load will be 8 as all jobs overlap during the time interval [3,4].
+	assert.Equal(t, 8, MaxCPULoad([][]int{{1, 4, 2}, {2, 4, 1}, {3, 6, 5}}))
+}

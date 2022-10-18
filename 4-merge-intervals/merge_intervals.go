@@ -91,6 +91,33 @@ func MinimumMeetingRooms(a [][]int) int {
 	return maxRooms
 }
 
+func MaxCPULoad(jobs [][]int) int {
+	sort.Slice(jobs, func(i, j int) bool {
+		return jobs[i][0] < jobs[j][0]
+	})
+	maxLoad := jobs[0][2]
+	concurrentJobs := make([]Job, 0)
+	concurrentJobs = append(concurrentJobs, Job{jobs[0][0], jobs[0][1], jobs[0][2]})
+	for i := 1; i < len(jobs); i++ {
+		ind := 0
+		for ; ind < len(concurrentJobs); ind++ {
+			if jobs[i][0] < concurrentJobs[ind].End {
+				break
+			}
+		}
+		concurrentJobs = concurrentJobs[ind:]
+		concurrentJobs = append(concurrentJobs, Job{jobs[i][0], jobs[i][1], jobs[i][2]})
+		load := 0
+		for j := range concurrentJobs {
+			load += concurrentJobs[j].Load
+		}
+		if load > maxLoad {
+			maxLoad = load
+		}
+	}
+	return maxLoad
+}
+
 // helpers
 
 func min(a, b int) int {
@@ -116,4 +143,10 @@ func comp(p1, p2 []int) (int, bool) {
 		return 1, p1[1] >= p2[0]
 	}
 	return 0, true
+}
+
+type Job struct {
+	Start int
+	End   int
+	Load  int
 }
