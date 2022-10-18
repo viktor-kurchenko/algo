@@ -65,3 +65,14 @@ func TestMaxCPULoad(t *testing.T) {
 	// Maximum CPU load will be 8 as all jobs overlap during the time interval [3,4].
 	assert.Equal(t, 8, MaxCPULoad([][]int{{1, 4, 2}, {2, 4, 1}, {3, 6, 5}}))
 }
+
+func TestEmployeeFreeTime(t *testing.T) {
+	// Both the employees are free between [3,5].
+	assert.Equal(t, [][]int{{3, 5}}, EmployeeFreeTime([][][]int{{{1, 3}, {5, 6}}, {{2, 3}, {6, 8}}}))
+
+	// All employees are free between [4,6] and [8,9].
+	assert.Equal(t, [][]int{{4, 6}, {8, 9}}, EmployeeFreeTime([][][]int{{{1, 3}, {9, 12}}, {{2, 4}}, {{6, 8}}}))
+
+	// All employees are free between [5,7].
+	assert.Equal(t, [][]int{{5, 7}}, EmployeeFreeTime([][][]int{{{1, 3}}, {{2, 4}}, {{3, 5}, {7, 9}}}))
+}

@@ -118,6 +118,57 @@ func MaxCPULoad(jobs [][]int) int {
 	return maxLoad
 }
 
+func EmployeeFreeTime(intervals [][][]int) [][]int {
+	min, max := 24, 0
+	for _, interval := range intervals {
+		if min > interval[0][0] {
+			min = interval[0][0]
+		}
+		if max < interval[len(interval)-1][1] {
+			max = interval[len(interval)-1][1]
+		}
+	}
+	timeline := make(map[int]bool)
+	for i := min; i < max; i++ {
+		timeline[i] = false
+	}
+	for _, interval := range intervals {
+		for _, emp := range interval {
+			for i := emp[0]; i < emp[1]; i++ {
+				timeline[i] = true
+			}
+		}
+	}
+	result := make([][]int, 0)
+	period := make([]int, 0)
+	for i := min; i < max; i++ {
+		if timeline[i] {
+			if len(period) > 0 {
+				if len(period) == 1 {
+					period = append(period, i)
+				} else {
+					period[1] = i
+				}
+				result = append(result, period)
+				period = make([]int, 0)
+			}
+			continue
+		}
+		if len(period) < 2 {
+			period = append(period, i)
+		} else {
+			period[1] = i
+		}
+	}
+	if len(period) > 0 {
+		if len(period) == 1 {
+			period = append(period, max)
+		}
+		result = append(result, period)
+	}
+	return result
+}
+
 // helpers
 
 func min(a, b int) int {
