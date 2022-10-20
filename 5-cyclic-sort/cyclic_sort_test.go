@@ -19,3 +19,11 @@ func TestMissingNumber(t *testing.T) {
 
 	assert.Equal(t, 7, MissingNumber([]int{8, 3, 5, 2, 4, 6, 0, 1}))
 }
+
+func TestAllMissingNumbers(t *testing.T) {
+	assert.Equal(t, []int{4, 6, 7}, AllMissingNumbers([]int{2, 3, 1, 8, 2, 3, 5, 1}))
+
+	assert.Equal(t, []int{3}, AllMissingNumbers([]int{2, 4, 1, 2}))
+
+	assert.Equal(t, []int{4}, AllMissingNumbers([]int{2, 3, 2, 1}))
+}
