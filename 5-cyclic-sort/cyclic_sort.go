@@ -28,10 +28,7 @@ func MissingNumber(a []int) int {
 
 func AllMissingNumbers(a []int) []int {
 	for i := 0; i < len(a); i++ {
-		for a[i] != i+1 {
-			if a[i] == a[a[i]-1] {
-				break
-			}
+		for a[i] != i+1 && a[i] != a[a[i]-1] {
 			a[i], a[a[i]-1] = a[a[i]-1], a[i]
 		}
 	}
@@ -42,4 +39,16 @@ func AllMissingNumbers(a []int) []int {
 		}
 	}
 	return result
+}
+
+func FindDuplicate(a []int) int {
+	for i := 0; i < len(a); i++ {
+		for a[i] != i+1 {
+			if a[i] == a[a[i]-1] {
+				return a[i]
+			}
+			a[i], a[a[i]-1] = a[a[i]-1], a[i]
+		}
+	}
+	return -1
 }

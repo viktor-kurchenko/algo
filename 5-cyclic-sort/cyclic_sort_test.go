@@ -27,3 +27,11 @@ func TestAllMissingNumbers(t *testing.T) {
 
 	assert.Equal(t, []int{4}, AllMissingNumbers([]int{2, 3, 2, 1}))
 }
+
+func TestFindDuplicate(t *testing.T) {
+	assert.Equal(t, 4, FindDuplicate([]int{1, 4, 4, 3, 2}))
+
+	assert.Equal(t, 3, FindDuplicate([]int{2, 1, 3, 3, 5, 4}))
+
+	assert.Equal(t, 4, FindDuplicate([]int{2, 4, 1, 4, 4}))
+}
