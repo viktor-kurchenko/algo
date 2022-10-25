@@ -1,5 +1,7 @@
 package main
 
+import "sort"
+
 func CyclicSort(a []int) []int {
 	for i := 0; i < len(a); i++ {
 		for a[i] != i+1 {
@@ -64,5 +66,6 @@ func FindAllDuplicates(a []int) []int {
 			a[i], a[a[i]-1] = a[a[i]-1], a[i]
 		}
 	}
+	sort.Ints(result)
 	return result
 }
