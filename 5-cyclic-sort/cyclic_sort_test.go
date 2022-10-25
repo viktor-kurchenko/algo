@@ -47,3 +47,11 @@ func TestFindCorruptPair(t *testing.T) {
 
 	assert.Equal(t, []int{3, 5}, FindCorruptPair([]int{3, 1, 2, 3, 6, 4}))
 }
+
+func TestFindSmallestMissingPositiveNumber(t *testing.T) {
+	assert.Equal(t, 3, FindSmallestMissingPositiveNumber([]int{-3, 1, 5, 4, 2}))
+
+	assert.Equal(t, 4, FindSmallestMissingPositiveNumber([]int{3, -2, 0, 1, 2}))
+
+	assert.Equal(t, 4, FindSmallestMissingPositiveNumber([]int{3, 2, 5, 1}))
+}

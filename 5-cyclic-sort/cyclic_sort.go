@@ -83,3 +83,20 @@ func FindCorruptPair(a []int) []int {
 	}
 	return nil
 }
+
+func FindSmallestMissingPositiveNumber(a []int) int {
+	for i := 0; i < len(a); i++ {
+		for a[i] != i+1 {
+			if a[i] < 1 || a[i] > len(a) || a[i] == a[a[i]-1] {
+				break
+			}
+			a[i], a[a[i]-1] = a[a[i]-1], a[i]
+		}
+	}
+	for i := 0; i < len(a); i++ {
+		if a[i] != i+1 {
+			return i + 1
+		}
+	}
+	return -1
+}
