@@ -35,3 +35,9 @@ func TestFindDuplicate(t *testing.T) {
 
 	assert.Equal(t, 4, FindDuplicate([]int{2, 4, 1, 4, 4}))
 }
+
+func TestFindAllDuplicates(t *testing.T) {
+	assert.Equal(t, []int{4, 5}, FindAllDuplicates([]int{3, 4, 4, 5, 5}))
+
+	assert.Equal(t, []int{3, 5}, FindAllDuplicates([]int{5, 4, 7, 2, 3, 5, 3}))
+}
