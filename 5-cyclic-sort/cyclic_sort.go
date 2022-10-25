@@ -69,3 +69,25 @@ func FindAllDuplicates(a []int) []int {
 	sort.Ints(result)
 	return result
 }
+
+func FindCorruptPair(a []int) []int {
+	result := make([]int, 0)
+	for i := 0; i < len(a); i++ {
+		for a[i] != i+1 {
+			if a[i] == a[a[i]-1] {
+				if len(result) == 0 {
+					result = append(result, a[i])
+				}
+				break
+			}
+			a[i], a[a[i]-1] = a[a[i]-1], a[i]
+		}
+	}
+	for i := 0; i < len(a); i++ {
+		if a[i] != i+1 {
+			result = append(result, i+1)
+			break
+		}
+	}
+	return result
+}

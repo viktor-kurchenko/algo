@@ -41,3 +41,9 @@ func TestFindAllDuplicates(t *testing.T) {
 
 	assert.Equal(t, []int{3, 5}, FindAllDuplicates([]int{5, 4, 7, 2, 3, 5, 3}))
 }
+
+func TestFindCorruptPair(t *testing.T) {
+	assert.Equal(t, []int{2, 4}, FindCorruptPair([]int{3, 1, 2, 5, 2}))
+
+	assert.Equal(t, []int{3, 5}, FindCorruptPair([]int{3, 1, 2, 3, 6, 4}))
+}
