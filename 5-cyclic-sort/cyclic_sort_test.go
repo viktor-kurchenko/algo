@@ -55,3 +55,11 @@ func TestFindSmallestMissingPositiveNumber(t *testing.T) {
 
 	assert.Equal(t, 4, FindSmallestMissingPositiveNumber([]int{3, 2, 5, 1}))
 }
+
+func TestFindFirstKSmallestMissingPositiveNumbers(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 6}, FindFirstKSmallestMissingPositiveNumbers([]int{3, -1, 4, 5, 5}, 3))
+
+	assert.Equal(t, []int{1, 5, 6}, FindFirstKSmallestMissingPositiveNumbers([]int{2, 3, 4}, 3))
+
+	assert.Equal(t, []int{1, 2}, FindFirstKSmallestMissingPositiveNumbers([]int{-2, -3, 4}, 2))
+}

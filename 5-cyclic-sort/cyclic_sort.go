@@ -100,3 +100,36 @@ func FindSmallestMissingPositiveNumber(a []int) int {
 	}
 	return -1
 }
+
+func FindFirstKSmallestMissingPositiveNumbers(a []int, k int) []int {
+	large := make(map[int]struct{})
+	for i := 0; i < len(a); i++ {
+		if a[i] < 1 {
+			continue
+		}
+		for a[i] != i+1 || a[i] > 0 {
+			if a[i] > len(a) {
+				large[a[i]], a[i] = struct{}{}, 0
+				break
+			}
+			if a[i] == a[a[i]-1] {
+				break
+			}
+			a[i], a[a[i]-1] = a[a[i]-1], a[i]
+		}
+	}
+	result := make([]int, 0)
+	for i := 0; i < len(a) && len(result) < k; i++ {
+		if a[i] == i+1 {
+			continue
+		}
+		result = append(result, i+1)
+	}
+	for i := len(a) + 1; len(result) < k; i++ {
+		if _, ok := large[i]; ok {
+			continue
+		}
+		result = append(result, i)
+	}
+	return result
+}
