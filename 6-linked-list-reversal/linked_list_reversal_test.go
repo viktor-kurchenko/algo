@@ -38,15 +38,15 @@ func TestReverseSubList(t *testing.T) {
 				},
 			},
 		},
-	}, 2, 4)
+	}, 1, 4)
 	expected := &Node{
-		Val: 1,
+		Val: 4,
 		Next: &Node{
-			Val: 4,
+			Val: 3,
 			Next: &Node{
-				Val: 3,
+				Val: 2,
 				Next: &Node{
-					Val: 2,
+					Val: 1,
 					Next: &Node{
 						Val: 5,
 					},

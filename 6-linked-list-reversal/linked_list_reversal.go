@@ -16,21 +16,31 @@ func ReverseLinkedList(l *Node) *Node {
 }
 
 func ReverseSubList(l *Node, p, q int) *Node {
-	start := l
-	for i := 1; i < p-1 && start.Next != nil; i++ {
-		start = start.Next
-	}
-
 	var prev *Node
-	head := start.Next
-	for i := p; i <= q && head.Next != nil; i++ {
-		next := head.Next
-		head.Next = prev
-		prev, head = head, next
+	node := l
+	for i := 1; i < p; i++ {
+		prev = node
+		node = node.Next
 	}
 
-	start.Next, start.Next.Next = prev, head
-	return l
+	start := prev
+	subListEnd := node
+
+	for i := p; i <= q; i++ {
+		next := node.Next
+		node.Next = prev
+		prev = node
+		node = next
+	}
+
+	if start == nil {
+		start = prev
+		subListEnd.Next = node
+	} else {
+		start.Next.Next = node
+		start.Next = prev
+	}
+	return start
 }
 
 type Node struct {
